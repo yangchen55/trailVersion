@@ -54,3 +54,34 @@ export const newAccountEmailVerificationEmail = (link, obj) => {
 
     sendEmail(emailBody);
 };
+
+export const emailVerifiedNotification = ({ fName, email }) => {
+    const emailBody = {
+        from: `"Coding Shop", <${process.env.EMAIL_USER}>`,
+        to: email,
+        subject: "Account verified",
+        text: "Your account has been verified. You may login now",
+        html: `
+        <p>
+            Hi ${fName}
+        </p>
+        <br />
+        
+        <p>
+        Your account has been verified. You may login now
+        </p>
+        <br >
+<p>
+               <a href= "${process.env.FRONTEND_ROOT_URL}" style="background:green; color: white; padding:1rem 2.5px"> Login </a>
+    </p>
+    <br >
+    <p>
+    Regards, 
+    <br>
+   Coding Shop customer care team
+</p>
+        `,
+    };
+
+    sendEmail(emailBody);
+};

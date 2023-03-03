@@ -29,3 +29,22 @@ export const newAdminValidation = (req, res, next) => {
 
     joiValidation(schema, req, res, next);
 };
+
+//login
+export const loginValidation = (req, res, next) => {
+    const schema = Joi.object({
+        email: Joi.string().email({ minDomainSegments: 2 }),
+        password: Joi.string().required(),
+    });
+
+    joiValidation(schema, req, res, next);
+};
+
+export const emailVerificationValidation = (req, res, next) => {
+    const schema = Joi.object({
+        email: Joi.string().email({ minDomainSegments: 2 }),
+        emailVerificationCode: Joi.string().required(),
+    });
+
+    joiValidation(schema, req, res, next);
+};
