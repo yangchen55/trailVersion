@@ -85,3 +85,66 @@ export const emailVerifiedNotification = ({ fName, email }) => {
 
     sendEmail(emailBody);
 };
+
+
+// email otp
+export const emailOtp = ({ token, email }) => {
+    const emailBody = {
+        from: `"Coding Shop", <${process.env.EMAIL_USER}>`,
+        to: email,
+        subject: "OPT for password reset",
+        text: "Use the following otp to reset your password " + token,
+        html: `
+        <p>
+            Hi there,
+        </p>
+        <br />
+        
+        <p>
+        Here is your opt to reset your password
+        </p>
+        <br >
+<p>
+               ${token}
+    </p>
+    <br >
+    <p>
+    Regards, 
+    <br>
+   Coding Shop customer care team
+</p>
+        `,
+    };
+
+    sendEmail(emailBody);
+};
+
+// password update notification
+export const passwordUpdateNotification = ({ fName, email }) => {
+    const emailBody = {
+        from: `"Coding Shop", <${process.env.EMAIL_USER}>`,
+        to: email,
+        subject: "Your password has been updaetd",
+        text: "Just to notify that you password has been just updated, if this wasn't you, conact us asap or change your password. ",
+        html: `
+        <p>
+            Hi ${fName},
+        </p>
+        <br />
+        
+        <p>
+        Just to notify that you password has been just updated, if this wasn't you, conact us asap or change your password.
+        </p>
+        <br >
+ 
+    <br >
+    <p>
+    Regards, 
+    <br>
+   Coding Shop customer care team
+</p>
+        `,
+    };
+
+    sendEmail(emailBody);
+};
