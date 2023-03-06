@@ -12,7 +12,6 @@ const PORT = process.env.PORT || 8000;
 
 dbConnect();
 
-
 // let the express is app so it allowed to use cors, express..json or moragn 
 // middlewares
 app.use(cors());

@@ -1,7 +1,26 @@
 import express from "express";
-import { createNewCategory } from "../models/category/CategoryModel.js";
+import { createNewCategory, deleteCategory, getCategory } from "../models/category/CategoryModel.js";
 import slugify from "slugify";
+
 const router = express.Router()
+
+router.get("/", async (req, res, next) => {
+    try {
+        const cats = await getCategory()
+        res.json({
+            status: "success",
+            message: "Here is the cat lists",
+            cats,
+        });
+
+
+    } catch (error) {
+        next(error)
+
+    }
+
+}
+)
 
 router.post("/", async (req, res, next) => {
     try {
@@ -42,4 +61,27 @@ router.post("/", async (req, res, next) => {
 
 })
 
+router.delete("/:_id", async (req, res, next) => {
+    const { _id } = req.params
+    console.log(_id)
+
+    const result = await deleteCategory(_id)
+    if (result?._id) {
+        return res.json({
+            status: "success",
+            message: "The category has been deleted successfully",
+        });
+    }
+    try {
+        res.json({
+            status: "error",
+            message: "Unable to delete the category, try again later",
+        });
+
+
+    } catch (error) {
+        next(error)
+
+    }
+})
 export default router
