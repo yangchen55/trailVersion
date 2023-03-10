@@ -11,3 +11,9 @@ export const getCategory = () => {
 export const deleteCategory = (_id) => {
     return CategorySchema.findByIdAndDelete(_id)
 }
+
+
+
+export const updateCategory = ({ _id, ...rest }) => {
+    return CategorySchema.findByIdAndUpdate(_id, rest, { new: true });
+};

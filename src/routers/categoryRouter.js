@@ -1,5 +1,5 @@
 import express from "express";
-import { createNewCategory, deleteCategory, getCategory } from "../models/category/CategoryModel.js";
+import { createNewCategory, deleteCategory, getCategory, updateCategory } from "../models/category/CategoryModel.js";
 import slugify from "slugify";
 
 const router = express.Router()
@@ -12,8 +12,6 @@ router.get("/", async (req, res, next) => {
             message: "Here is the cat lists",
             cats,
         });
-
-
     } catch (error) {
         next(error)
 
@@ -84,4 +82,26 @@ router.delete("/:_id", async (req, res, next) => {
 
     }
 })
+
+
+
+router.put("/", async (req, res, next) => {
+    try {
+        const result = await updateCategory(req.body);
+
+        if (result?._id) {
+            return res.json({
+                status: "success",
+                message: "The Category has been updated!",
+                result,
+            });
+        }
+        res.json({
+            status: "error",
+            message: "Unanble to upda the category, please try gain later",
+        });
+    } catch (error) {
+        next(error);
+    }
+});
 export default router

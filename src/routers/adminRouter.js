@@ -13,7 +13,6 @@ const router = express.Router();
 router.post("/login", loginValidation, async (req, res, next) => {
     try {
         const { email, password } = req.body;
-
         // find user by email
         const user = await findUser({ email });
         console.log(user)
