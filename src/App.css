@@ -1,0 +1,29 @@
+.main {
+  min-height: 70vh;
+}
+.register-page form {
+  max-width: 450px;
+  margin: auto;
+}
+.login-page form{
+  max-width: 450px;
+  margin: auto;
+  padding: 1rem;
+}
+.side-bar {
+  min-height: 80vh;
+}
+.side-bar a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+
+.side-bar ul li {
+  list-style-type: none;
+  margin-bottom: 2rem;
+}
+
+.sidebar-menu {
+  position: fixed;
+}
